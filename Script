@@ -1,0 +1,44 @@
+// DOM Ready Handler
+document.addEventListener('DOMContentLoaded', () => {
+  // Chat Toggle
+  const chatWidget = document.getElementById('chatWidget');
+  document.getElementById('chatToggle').addEventListener('click', () => {
+    chatWidget.classList.toggle('d-none');
+  });
+
+  document.getElementById('closeChat').addEventListener('click', () => {
+    chatWidget.classList.add('d-none');
+  });
+
+  // Chat Functionality
+  const sendBtn = document.getElementById('sendBtn');
+  const userInput = document.getElementById('userInput');
+  const chatMessages = document.getElementById('chatMessages');
+
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `mb-2 p-3 rounded-3 ${isUser ? 'bg-primary text-white ms-auto' : 'bg-light'}`;
+    messageDiv.style.maxWidth = '80%';
+    messageDiv.textContent = text;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  function sendMessage() {
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    addMessage(message, true);
+    userInput.value = '';
+
+    // Simulate AI response
+    setTimeout(() => {
+      addMessage(`I'm your MindBuddy AI. For "${message}", try our 5-minute meditation.`);
+    }, 1000);
+  }
+});
