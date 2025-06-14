@@ -1,0 +1,39 @@
+:root {
+  --primary: #7367F0;
+  --secondary: #AEA2F2;
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Fixed navbar spacing */
+body {
+  padding-top: 56px;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+}
+
+/* Optimized hero section */
+.hero {
+  min-height: calc(100vh - 56px);
+}
+
+/* Chat widget fixes */
+#chatWidget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  z-index: 1000;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    text-align: center;
+    padding-top: 2rem !important;
+  }
+  #chatWidget {
+    width: 90%;
+    right: 5%;
+  }
+}
